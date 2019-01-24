@@ -166,8 +166,8 @@ public class YouTubeView extends FrameLayout {
     }
 
     public void setApiKey(String apiKey) {
-        mApiKey=apiKey
-        initPlayer()
+        mApiKey=apiKey;
+        initPlayer();
     }
 
     public void setVideoId(String str) {
