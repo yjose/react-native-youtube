@@ -18,6 +18,8 @@ public class YouTubeView extends FrameLayout {
     private YouTubePlayerController mYouTubeController;
     private VideoFragment mVideoFragment;
     private boolean mHasSavedInstance = false;
+    private String mApiKey;
+
 
     public YouTubeView(ReactContext context) {
         super(context);
@@ -32,6 +34,8 @@ public class YouTubeView extends FrameLayout {
         inflate(getContext(), R.layout.youtube_layout, this);
         mVideoFragment = VideoFragment.newInstance(this);
         mYouTubeController = new YouTubePlayerController(this);
+        mApiKey = null;
+
     }
 
     @Nullable
@@ -153,12 +157,17 @@ public class YouTubeView extends FrameLayout {
         reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "fullscreen", event);
     }
 
-    public void setApiKey(String apiKey) {
-        try {
+    public void initPlayer () {
+         try {
             mVideoFragment.initialize(apiKey, mYouTubeController);
         } catch (Exception e) {
             receivedError(e.getMessage());
         }
+    }
+
+    public void setApiKey(String apiKey) {
+        mApiKey=apiKey
+        initPlayer()
     }
 
     public void setVideoId(String str) {
