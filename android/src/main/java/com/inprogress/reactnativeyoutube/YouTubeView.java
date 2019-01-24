@@ -159,7 +159,7 @@ public class YouTubeView extends FrameLayout {
 
     public void initPlayer () {
          try {
-            mVideoFragment.initialize(apiKey, mYouTubeController);
+            mVideoFragment.initialize(mApiKey, mYouTubeController);
         } catch (Exception e) {
             receivedError(e.getMessage());
         }
